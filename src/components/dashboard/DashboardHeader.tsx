@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Bell, Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
+import { UserMenu } from "./UserMenu";
 
 export const DashboardHeader = () => {
   return (
@@ -22,18 +23,10 @@ export const DashboardHeader = () => {
           <Bell className="w-5 h-5" />
           <span className="absolute top-2 right-2 w-2 h-2 bg-primary rounded-full"></span>
         </Button>
-        
+
         <div className="h-8 w-px bg-border"></div>
-        
-        <div className="flex items-center gap-3">
-          <div className="text-right">
-            <p className="text-sm font-medium">2,450 Points</p>
-            <p className="text-xs text-muted-foreground">Level 12</p>
-          </div>
-          <div className="w-10 h-10 rounded-full gradient-primary flex items-center justify-center text-white font-bold">
-            JD
-          </div>
-        </div>
+
+        <UserMenu />
       </div>
     </header>
   );
