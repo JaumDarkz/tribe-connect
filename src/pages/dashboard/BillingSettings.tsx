@@ -1,9 +1,12 @@
 /**
  * Billing Settings Page
  * Manage subscription, payment methods, and billing history
+ *
+ * NOTE: This page has been moved to the Settings page.
+ * This file now redirects to /dashboard/settings?tab=billing
  */
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   CreditCard,
@@ -46,6 +49,11 @@ const BillingSettings = () => {
     reactivateSubscription: reactivateSub,
   } = useSubscription();
   const { toast } = useToast();
+
+  // Redirect to Settings page with billing tab
+  useEffect(() => {
+    navigate('/dashboard/settings?tab=billing', { replace: true });
+  }, [navigate]);
 
   const [showCancelDialog, setShowCancelDialog] = useState(false);
   const [showReactivateDialog, setShowReactivateDialog] = useState(false);
@@ -312,7 +320,7 @@ const BillingSettings = () => {
                   Have questions about billing or your subscription?
                 </p>
                 <a
-                  href="mailto:support@engageio.com"
+                  href="mailto:support@tribeconnect.com"
                   className="text-sm text-primary hover:underline"
                 >
                   Contact Support →

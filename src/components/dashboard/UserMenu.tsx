@@ -15,7 +15,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useToast } from "@/hooks/use-toast";
-import { LogOut, User, Settings } from "lucide-react";
+import { LogOut, Settings } from "lucide-react";
 
 export const UserMenu = () => {
   const { user, signOut } = useAuth();
@@ -83,11 +83,7 @@ export const UserMenu = () => {
           </div>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>
-          <User className="w-4 h-4 mr-2" />
-          Profile
-        </DropdownMenuItem>
-        <DropdownMenuItem>
+        <DropdownMenuItem onClick={() => navigate('/dashboard/settings')}>
           <Settings className="w-4 h-4 mr-2" />
           Settings
         </DropdownMenuItem>

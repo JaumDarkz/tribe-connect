@@ -44,7 +44,7 @@ const faqs = [
   {
     question: 'Do premium features work across all servers?',
     answer:
-      'Yes! Your premium subscription is tied to your account, not individual servers. This means all premium features (auto-farm, XP boost, etc.) work across every server where ENGAGE IO is installed. One subscription gives you premium benefits everywhere.',
+      'Yes! Your premium subscription is tied to your account, not individual servers. This means all premium features (auto-farm, XP boost, etc.) work across every server where TRIBE CONNECT is installed. One subscription gives you premium benefits everywhere.',
   },
   {
     question: 'Can I pay annually for a discount?',
@@ -109,7 +109,7 @@ export const PricingFAQ = () => {
               Still have questions? We're here to help!
             </p>
             <a
-              href="mailto:support@engageio.com"
+              href="mailto:support@tribeconnect.com"
               className="text-primary hover:underline font-medium"
             >
               Contact Support →

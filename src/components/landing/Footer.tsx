@@ -37,7 +37,7 @@ export const Footer = () => {
               <div className="w-8 h-8 rounded-lg gradient-primary flex items-center justify-center">
                 <Zap className="w-5 h-5 text-white" />
               </div>
-              ENGAGE <span className="text-primary">IO</span>
+              TRIBE <span className="text-primary">CONNECT</span>
             </div>
             <p className="text-sm text-muted-foreground mb-4">
               Maximize your Discord engagement with automated rewards, social integration, and Web3 features.
@@ -112,7 +112,7 @@ export const Footer = () => {
         {/* Bottom bar */}
         <div className="pt-8 border-t border-border/50 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-sm text-muted-foreground">
-            © 2023 ENGAGE IO LTD. All rights reserved.
+            © 2025 TRIBE CONNECT. All rights reserved.
           </p>
           <div className="flex items-center gap-6 text-sm text-muted-foreground">
             <span>16,000+ Communities</span>

@@ -41,7 +41,7 @@ export const PLANS: Record<PlanTier, Plan> = {
       { name: 'Faster point claiming', included: true },
       { name: 'Premium-exclusive giveaways', included: true },
       { name: '+1 extra raffle entry', included: true },
-      { name: 'Win reminder notifications', included: true },
+      // { name: 'Win reminder notifications', included: true }, // COMMENTED OUT: Notifications system disabled
       { name: 'Captcha-free participation', included: true },
       { name: 'Multiple servers', included: true },
     ],

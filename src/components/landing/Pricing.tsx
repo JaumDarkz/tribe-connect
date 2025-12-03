@@ -29,7 +29,7 @@ const plans = [
       "Faster point claiming",
       "Premium-exclusive giveaways",
       "+1 extra raffle entry",
-      "Win reminder notifications",
+      // "Win reminder notifications", // COMMENTED OUT: Notifications system disabled
       "Captcha-free participation",
       "Multiple servers",
     ],

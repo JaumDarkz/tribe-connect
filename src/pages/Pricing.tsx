@@ -244,7 +244,7 @@ const Pricing = () => {
               ?
             </h2>
             <p className="text-xl text-muted-foreground mb-8">
-              Join thousands of Discord communities already using ENGAGE IO
+              Join thousands of Discord communities already using TRIBE CONNECT
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               {user ? (

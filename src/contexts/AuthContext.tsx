@@ -101,6 +101,84 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     }
   };
 
+  const signInWithDiscord = async (): Promise<User> => {
+    setError(null);
+    try {
+      const user = await authService.signInWithDiscord();
+      return user;
+    } catch (err) {
+      setError(err as Error);
+      throw err;
+    }
+  };
+
+  const linkDiscordAccount = async (): Promise<void> => {
+    setError(null);
+    try {
+      await authService.linkDiscordAccount();
+      // Refresh user state after linking
+      if (auth.currentUser) {
+        setUser({ ...auth.currentUser } as User);
+      }
+    } catch (err) {
+      setError(err as Error);
+      throw err;
+    }
+  };
+
+  const unlinkDiscordAccount = async (): Promise<void> => {
+    setError(null);
+    try {
+      await authService.unlinkDiscordAccount();
+      // Refresh user state after unlinking
+      if (auth.currentUser) {
+        setUser({ ...auth.currentUser } as User);
+      }
+    } catch (err) {
+      setError(err as Error);
+      throw err;
+    }
+  };
+
+  const signInWithTwitter = async (): Promise<User> => {
+    setError(null);
+    try {
+      const user = await authService.signInWithTwitter();
+      return user;
+    } catch (err) {
+      setError(err as Error);
+      throw err;
+    }
+  };
+
+  const linkTwitterAccount = async (): Promise<void> => {
+    setError(null);
+    try {
+      await authService.linkTwitterAccount();
+      // Refresh user state after linking
+      if (auth.currentUser) {
+        setUser({ ...auth.currentUser } as User);
+      }
+    } catch (err) {
+      setError(err as Error);
+      throw err;
+    }
+  };
+
+  const unlinkTwitterAccount = async (): Promise<void> => {
+    setError(null);
+    try {
+      await authService.unlinkTwitterAccount();
+      // Refresh user state after unlinking
+      if (auth.currentUser) {
+        setUser({ ...auth.currentUser } as User);
+      }
+    } catch (err) {
+      setError(err as Error);
+      throw err;
+    }
+  };
+
   const sendSignInLinkToEmail = async (email: string): Promise<void> => {
     setError(null);
     try {
@@ -183,6 +261,12 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     signInWithEmail,
     signUpWithEmail,
     signInWithGoogle,
+    signInWithDiscord,
+    linkDiscordAccount,
+    unlinkDiscordAccount,
+    signInWithTwitter,
+    linkTwitterAccount,
+    unlinkTwitterAccount,
     sendSignInLinkToEmail,
     signInWithEmailLink,
     resetPassword,

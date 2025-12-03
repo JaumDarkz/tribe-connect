@@ -74,7 +74,7 @@ const CheckoutCancel = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center text-sm">
             <a
-              href="mailto:support@engageio.com"
+              href="mailto:support@tribeconnect.com"
               className="text-primary hover:underline"
             >
               Contact Support

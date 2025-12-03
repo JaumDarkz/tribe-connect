@@ -27,6 +27,12 @@ export interface AuthContextType extends AuthState {
   signInWithEmail: (email: string, password: string) => Promise<User>;
   signUpWithEmail: (email: string, password: string, displayName?: string) => Promise<User>;
   signInWithGoogle: () => Promise<User>;
+  signInWithDiscord: () => Promise<User>;
+  linkDiscordAccount: () => Promise<void>;
+  unlinkDiscordAccount: () => Promise<void>;
+  signInWithTwitter: () => Promise<User>;
+  linkTwitterAccount: () => Promise<void>;
+  unlinkTwitterAccount: () => Promise<void>;
   sendSignInLinkToEmail: (email: string) => Promise<void>;
   signInWithEmailLink: (email: string, emailLink: string) => Promise<User>;
   resetPassword: (email: string) => Promise<void>;

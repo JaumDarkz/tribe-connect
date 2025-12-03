@@ -1,41 +1,54 @@
 import { TrendingUp, Users, Trophy, Zap } from "lucide-react";
 
-const stats = [
-  {
-    icon: Users,
-    label: "Active Members",
-    value: "1,284",
-    change: "+12.5%",
-    positive: true,
-    color: "primary",
-  },
-  {
-    icon: Zap,
-    label: "Engagement Rate",
-    value: "87.3%",
-    change: "+5.2%",
-    positive: true,
-    color: "secondary",
-  },
-  {
-    icon: Trophy,
-    label: "Points Distributed",
-    value: "45.2K",
-    change: "+28.1%",
-    positive: true,
-    color: "accent",
-  },
-  {
-    icon: TrendingUp,
-    label: "Social Reach",
-    value: "123K",
-    change: "+156%",
-    positive: true,
-    color: "primary",
-  },
-];
+interface StatCardData {
+  activeMembers: number | null;
+  engagementRate: number | null;
+  pointsDistributed: number | null;
+  socialReach: number | null;
+}
 
-export const StatsCards = () => {
+interface StatsCardsProps {
+  data?: StatCardData | null;
+}
+
+export const StatsCards = ({ data }: StatsCardsProps) => {
+  const stats = [
+    {
+      icon: Users,
+      label: "Active Members",
+      value: data?.activeMembers ?? 0,
+      color: "primary",
+    },
+    {
+      icon: Zap,
+      label: "Engagement Rate",
+      value: data?.engagementRate !== null && data?.engagementRate !== undefined
+        ? `${data.engagementRate}%`
+        : "0%",
+      color: "secondary",
+    },
+    {
+      icon: Trophy,
+      label: "Points Distributed",
+      value: data?.pointsDistributed !== null && data?.pointsDistributed !== undefined
+        ? data.pointsDistributed >= 1000
+          ? `${(data.pointsDistributed / 1000).toFixed(1)}K`
+          : data.pointsDistributed
+        : 0,
+      color: "accent",
+    },
+    {
+      icon: TrendingUp,
+      label: "Social Reach",
+      value: data?.socialReach !== null && data?.socialReach !== undefined
+        ? data.socialReach >= 1000
+          ? `${(data.socialReach / 1000).toFixed(0)}K`
+          : data.socialReach
+        : 0,
+      color: "primary",
+    },
+  ];
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
       {stats.map((stat, index) => {
@@ -49,15 +62,6 @@ export const StatsCards = () => {
               <div className={`w-12 h-12 rounded-lg bg-${stat.color}/10 flex items-center justify-center`}>
                 <Icon className={`w-6 h-6 text-${stat.color}`} />
               </div>
-              <span
-                className={`text-xs font-medium px-2 py-1 rounded-full ${
-                  stat.positive
-                    ? "bg-success/10 text-success"
-                    : "bg-destructive/10 text-destructive"
-                }`}
-              >
-                {stat.change}
-              </span>
             </div>
             <h3 className="text-3xl font-display font-bold mb-1">{stat.value}</h3>
             <p className="text-sm text-muted-foreground">{stat.label}</p>

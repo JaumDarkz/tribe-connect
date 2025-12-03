@@ -9,6 +9,9 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   GoogleAuthProvider,
+  OAuthProvider,
+  linkWithPopup,
+  unlink,
   sendSignInLinkToEmail as firebaseSendSignInLinkToEmail,
   isSignInWithEmailLink,
   signInWithEmailLink as firebaseSignInWithEmailLink,
@@ -107,6 +110,85 @@ export const signInWithGoogle = async (): Promise<User> => {
   const userCredential: UserCredential = await signInWithPopup(auth, provider);
 
   return userCredential.user as User;
+};
+
+// ============================================================================
+// DISCORD OAUTH AUTHENTICATION
+// ============================================================================
+
+/**
+ * Sign in with Discord OAuth using popup
+ */
+export const signInWithDiscord = async (): Promise<User> => {
+  const provider = new OAuthProvider('oidc.discord');
+  provider.addScope('identify');
+  provider.addScope('email');
+
+  const userCredential: UserCredential = await signInWithPopup(auth, provider);
+  return userCredential.user as User;
+};
+
+/**
+ * Link Discord account to existing user
+ */
+export const linkDiscordAccount = async (): Promise<void> => {
+  if (!auth.currentUser) {
+    throw new Error('No user is currently signed in');
+  }
+
+  const provider = new OAuthProvider('oidc.discord');
+  provider.addScope('identify');
+  provider.addScope('email');
+
+  await linkWithPopup(auth.currentUser, provider);
+};
+
+/**
+ * Unlink Discord account from user
+ */
+export const unlinkDiscordAccount = async (): Promise<void> => {
+  if (!auth.currentUser) {
+    throw new Error('No user is currently signed in');
+  }
+
+  await unlink(auth.currentUser, 'oidc.discord');
+};
+
+// ============================================================================
+// TWITTER OAUTH AUTHENTICATION
+// ============================================================================
+
+/**
+ * Sign in with Twitter OAuth using popup
+ */
+export const signInWithTwitter = async (): Promise<User> => {
+  const provider = new OAuthProvider('twitter.com');
+
+  const userCredential: UserCredential = await signInWithPopup(auth, provider);
+  return userCredential.user as User;
+};
+
+/**
+ * Link Twitter account to existing user
+ */
+export const linkTwitterAccount = async (): Promise<void> => {
+  if (!auth.currentUser) {
+    throw new Error('No user is currently signed in');
+  }
+
+  const provider = new OAuthProvider('twitter.com');
+  await linkWithPopup(auth.currentUser, provider);
+};
+
+/**
+ * Unlink Twitter account from user
+ */
+export const unlinkTwitterAccount = async (): Promise<void> => {
+  if (!auth.currentUser) {
+    throw new Error('No user is currently signed in');
+  }
+
+  await unlink(auth.currentUser, 'twitter.com');
 };
 
 // ============================================================================

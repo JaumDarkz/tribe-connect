@@ -1,7 +1,7 @@
-import { Button } from "@/components/ui/button";
-import { Bell, Search } from "lucide-react";
+import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { UserMenu } from "./UserMenu";
+import { ThemeToggle } from "@/components/theme/ThemeToggle";
 
 export const DashboardHeader = () => {
   return (
@@ -13,16 +13,26 @@ export const DashboardHeader = () => {
           <Input
             placeholder="Search campaigns, members, rewards..."
             className="pl-10 bg-background/50"
+            disabled
           />
         </div>
       </div>
 
       {/* Actions */}
       <div className="flex items-center gap-4">
-        <Button variant="ghost" size="icon" className="relative">
+        <ThemeToggle />
+
+        {/* ============================================================================
+           NOTIFICATIONS SYSTEM - COMMENTED OUT
+           Disabled as per requirements. To re-enable:
+           1. Uncomment the code below
+           2. Restore notification context/hooks
+           3. Test notification functionality
+           ============================================================================ */}
+        {/* <Button variant="ghost" size="icon" className="relative">
           <Bell className="w-5 h-5" />
           <span className="absolute top-2 right-2 w-2 h-2 bg-primary rounded-full"></span>
-        </Button>
+        </Button> */}
 
         <div className="h-8 w-px bg-border"></div>
 

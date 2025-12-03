@@ -9,7 +9,7 @@ import { UserSubscription, PlanTier } from '@/types/subscription';
 /**
  * LocalStorage key for subscription data
  */
-const STORAGE_KEY = 'engageio_subscription';
+const STORAGE_KEY = 'tribeconnect_subscription';
 
 /**
  * Save subscription to localStorage

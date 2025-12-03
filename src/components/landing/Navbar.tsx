@@ -66,7 +66,7 @@ export const Navbar = () => {
             <div className="w-8 h-8 rounded-lg gradient-primary flex items-center justify-center">
               <Zap className="w-5 h-5 text-white" />
             </div>
-            ENGAGE <span className="text-primary">IO</span>
+            TRIBE <span className="text-primary">CONNECT</span>
           </Link>
 
           {/* Desktop Navigation */}

@@ -21,18 +21,22 @@ const Dashboard = () => {
             </p>
           </div>
 
-          <StatsCards />
+          {/* TODO: Replace with actual data from backend API */}
+          <StatsCards data={null} />
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             <div className="lg:col-span-2">
-              <EngagementChart />
+              {/* TODO: Replace with actual data from backend API */}
+              <EngagementChart weeklyData={null} stats={null} />
             </div>
             <div>
-              <TopPerformers />
+              {/* TODO: Replace with actual data from backend API */}
+              <TopPerformers performers={null} />
             </div>
           </div>
 
-          <RecentActivity />
+          {/* TODO: Replace with actual data from backend API */}
+          <RecentActivity activities={null} />
         </main>
       </div>
     </div>
