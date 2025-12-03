@@ -1,6 +1,9 @@
-import { Home, TrendingUp, Trophy, Wallet, Users, Settings, Zap, BarChart3, Gift } from "lucide-react";
+import { Home, TrendingUp, Trophy, Wallet, Users, Settings, Zap, BarChart3, Gift, CreditCard } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
+import { useAuth } from "@/hooks/useAuth";
+import { useSubscription } from "@/hooks/useSubscription";
+import { SubscriptionBadge } from "@/components/subscription/SubscriptionBadge";
 
 const menuItems = [
   { icon: Home, label: "Dashboard", path: "/dashboard" },
@@ -10,11 +13,30 @@ const menuItems = [
   { icon: Users, label: "Leaderboard", path: "/dashboard/leaderboard" },
   { icon: Wallet, label: "Web3 Integration", path: "/dashboard/web3" },
   { icon: BarChart3, label: "Analytics", path: "/dashboard/analytics" },
+  { icon: CreditCard, label: "Billing", path: "/dashboard/billing" },
   { icon: Settings, label: "Settings", path: "/dashboard/settings" },
 ];
 
 export const Sidebar = () => {
   const location = useLocation();
+  const { user } = useAuth();
+  const { currentPlan } = useSubscription();
+
+  // Get user initials
+  const getUserInitials = () => {
+    if (user?.displayName) {
+      return user.displayName
+        .split(" ")
+        .map((n) => n[0])
+        .join("")
+        .toUpperCase()
+        .slice(0, 2);
+    }
+    if (user?.email) {
+      return user.email[0].toUpperCase();
+    }
+    return "U";
+  };
 
   return (
     <aside className="w-64 bg-card border-r border-border/50 flex flex-col">
@@ -33,7 +55,7 @@ export const Sidebar = () => {
         {menuItems.map((item) => {
           const Icon = item.icon;
           const isActive = location.pathname === item.path;
-          
+
           return (
             <Link
               key={item.path}
@@ -57,18 +79,22 @@ export const Sidebar = () => {
         <div className="glassmorphism p-4 rounded-lg">
           <div className="flex items-center gap-3 mb-3">
             <div className="w-10 h-10 rounded-full gradient-primary flex items-center justify-center text-white font-bold">
-              JD
+              {getUserInitials()}
             </div>
             <div className="flex-1 min-w-0">
-              <p className="font-medium text-sm truncate">John Doe</p>
-              <p className="text-xs text-muted-foreground">Free Plan</p>
+              <p className="font-medium text-sm truncate">
+                {user?.displayName || user?.email || "User"}
+              </p>
+              <SubscriptionBadge plan={currentPlan} showIcon={false} className="text-xs mt-1" />
             </div>
           </div>
-          <Link to="/dashboard/upgrade">
-            <button className="w-full py-2 px-3 rounded-lg gradient-primary text-xs font-medium hover:opacity-90 transition-opacity">
-              Upgrade to Premium
-            </button>
-          </Link>
+          {currentPlan === 'free' && (
+            <Link to="/pricing">
+              <button className="w-full py-2 px-3 rounded-lg gradient-primary text-xs font-medium hover:opacity-90 transition-opacity">
+                Upgrade to Premium
+              </button>
+            </Link>
+          )}
         </div>
       </div>
     </aside>

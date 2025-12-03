@@ -132,7 +132,7 @@ export const Pricing = () => {
                   ))}
                 </ul>
 
-                <Link to="/dashboard">
+                <Link to={plan.id === 'free' ? '/signup' : '/pricing'}>
                   <Button
                     className={`w-full ${
                       plan.popular
