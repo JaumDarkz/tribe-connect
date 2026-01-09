@@ -26,7 +26,7 @@ export const Hero = () => {
           <h1 className="text-5xl md:text-7xl font-display font-black leading-tight">
             Maximize Your
             <br />
-            <span className="glow-text gradient-primary bg-clip-text text-transparent">
+            <span className="glow-text gradient-text">
               Discord Engagement
             </span>
           </h1>

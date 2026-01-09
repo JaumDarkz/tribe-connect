@@ -7,7 +7,6 @@ import { Plan, PlanTier } from '@/types/subscription';
 
 /**
  * All subscription plans
- * IMPORTANT: Update Stripe product/price IDs after creating them in Stripe Dashboard
  */
 export const PLANS: Record<PlanTier, Plan> = {
   free: {
@@ -25,8 +24,6 @@ export const PLANS: Record<PlanTier, Plan> = {
       { name: 'Community support', included: true },
       { name: 'Basic analytics', included: true },
     ],
-    stripeProductId: null,
-    stripePriceId: null,
     cta: 'Get Started',
     popular: false,
   },
@@ -41,12 +38,9 @@ export const PLANS: Record<PlanTier, Plan> = {
       { name: 'Faster point claiming', included: true },
       { name: 'Premium-exclusive giveaways', included: true },
       { name: '+1 extra raffle entry', included: true },
-      // { name: 'Win reminder notifications', included: true }, // COMMENTED OUT: Notifications system disabled
       { name: 'Captcha-free participation', included: true },
       { name: 'Multiple servers', included: true },
     ],
-    stripeProductId: 'prod_SILVER', // TODO: Replace with real Stripe product ID
-    stripePriceId: 'price_SILVER_MONTHLY', // TODO: Replace with real Stripe price ID
     cta: 'Upgrade to Silver',
     popular: false,
   },
@@ -65,8 +59,6 @@ export const PLANS: Record<PlanTier, Plan> = {
       { name: 'Limited API access', included: true },
       { name: 'Priority processing', included: true },
     ],
-    stripeProductId: 'prod_GOLD', // TODO: Replace with real Stripe product ID
-    stripePriceId: 'price_GOLD_MONTHLY', // TODO: Replace with real Stripe price ID
     cta: 'Upgrade to Gold',
     popular: true,
   },
@@ -86,8 +78,6 @@ export const PLANS: Record<PlanTier, Plan> = {
       { name: 'VIP status everywhere', included: true },
       { name: 'Insider community', included: true },
     ],
-    stripeProductId: 'prod_DIAMOND', // TODO: Replace with real Stripe product ID
-    stripePriceId: 'price_DIAMOND_MONTHLY', // TODO: Replace with real Stripe price ID
     cta: 'Go Diamond',
     popular: false,
   },

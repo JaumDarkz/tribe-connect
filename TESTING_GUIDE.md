@@ -276,7 +276,7 @@ User Journey:
 ```
 1. Sign up and upgrade to Silver
 2. Open DevTools → Application → Local Storage
-3. Find key: engageio_subscription_[userId]
+3. Find key: tribeconnect_subscription_[userId]
 4. Verify subscription data is stored
 5. Refresh page (F5)
 6. Verify subscription still shows Silver

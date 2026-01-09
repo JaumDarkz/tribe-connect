@@ -1,4 +1,4 @@
-import { Home, TrendingUp, Trophy, Wallet, Users, Settings, Zap, BarChart3, Gift, CreditCard } from "lucide-react";
+import { Home, TrendingUp, Trophy, Wallet, Users, Settings, Zap, BarChart3, Gift, CreditCard, BadgeDollarSign } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { useAuth } from "@/hooks/useAuth";
@@ -7,6 +7,7 @@ import { SubscriptionBadge } from "@/components/subscription/SubscriptionBadge";
 
 const menuItems = [
   { icon: Home, label: "Dashboard", path: "/dashboard" },
+  { icon: BadgeDollarSign, label: "Affiliate Program", path: "/dashboard/affiliate", highlight: true },
   // ============================================================================
   // COMING SOON - Pages not yet implemented
   // Uncomment when pages are ready
@@ -60,20 +61,29 @@ export const Sidebar = () => {
         {menuItems.map((item) => {
           const Icon = item.icon;
           const isActive = location.pathname === item.path;
+          const isHighlight = 'highlight' in item && item.highlight;
 
           return (
             <Link
               key={item.path}
               to={item.path}
               className={cn(
-                "flex items-center gap-3 px-4 py-3 rounded-lg transition-all",
+                "flex items-center gap-3 px-4 py-3 rounded-lg transition-all relative",
                 isActive
                   ? "bg-primary text-primary-foreground font-medium"
+                  : isHighlight
+                  ? "text-foreground hover:bg-muted border border-primary/30 bg-primary/5 hover:border-primary/50"
                   : "text-muted-foreground hover:bg-muted hover:text-foreground"
               )}
             >
-              <Icon className="w-5 h-5" />
+              <Icon className={cn("w-5 h-5", isHighlight && !isActive && "text-primary")} />
               <span className="text-sm">{item.label}</span>
+              {isHighlight && !isActive && (
+                <span className="absolute -top-1 -right-1 flex h-3 w-3">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-3 w-3 bg-primary"></span>
+                </span>
+              )}
             </Link>
           );
         })}

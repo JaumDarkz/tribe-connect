@@ -107,7 +107,7 @@ const Pricing = () => {
 
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-display font-bold mb-6">
               Choose Your
-              <span className="gradient-primary bg-clip-text text-transparent">
+              <span className="gradient-text">
                 {' '}
                 Power Level
               </span>
@@ -238,7 +238,7 @@ const Pricing = () => {
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-4xl md:text-5xl font-display font-bold mb-6">
               Ready to{' '}
-              <span className="gradient-primary bg-clip-text text-transparent">
+              <span className="gradient-text">
                 Power Up
               </span>
               ?

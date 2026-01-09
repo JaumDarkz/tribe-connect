@@ -122,9 +122,6 @@ export const createDefaultSubscription = (userId: string): UserSubscription => {
     userId,
     plan: 'free',
     status: 'active',
-    stripeCustomerId: null,
-    stripeSubscriptionId: null,
-    stripePriceId: null,
     currentPeriodStart: null,
     currentPeriodEnd: null,
     cancelAtPeriodEnd: false,
@@ -140,14 +137,12 @@ export const createDefaultSubscription = (userId: string): UserSubscription => {
  * Update subscription plan
  * @param userId - User ID
  * @param plan - New plan tier
- * @param stripeData - Optional Stripe data
+ * @param periodData - Optional period data
  */
 export const updateSubscriptionPlan = (
   userId: string,
   plan: PlanTier,
-  stripeData?: {
-    stripeSubscriptionId?: string;
-    stripePriceId?: string;
+  periodData?: {
     currentPeriodStart?: Date;
     currentPeriodEnd?: Date;
   }
@@ -159,10 +154,8 @@ export const updateSubscriptionPlan = (
       ...subscription,
       plan,
       status: 'active',
-      stripeSubscriptionId: stripeData?.stripeSubscriptionId || subscription.stripeSubscriptionId,
-      stripePriceId: stripeData?.stripePriceId || subscription.stripePriceId,
-      currentPeriodStart: stripeData?.currentPeriodStart || subscription.currentPeriodStart,
-      currentPeriodEnd: stripeData?.currentPeriodEnd || subscription.currentPeriodEnd,
+      currentPeriodStart: periodData?.currentPeriodStart || subscription.currentPeriodStart,
+      currentPeriodEnd: periodData?.currentPeriodEnd || subscription.currentPeriodEnd,
       cancelAtPeriodEnd: false,
       updatedAt: new Date(),
     };

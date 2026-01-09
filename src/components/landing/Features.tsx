@@ -61,7 +61,7 @@ export const Features = () => {
         <div className="max-w-3xl mx-auto text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-display font-bold mb-4">
             Everything You Need to
-            <span className="gradient-primary bg-clip-text text-transparent"> Connect & Grow</span>
+            <span className="gradient-text"> Connect & Grow</span>
           </h2>
           <p className="text-xl text-muted-foreground">
             Comprehensive tools for community engagement, social amplification, and member rewards

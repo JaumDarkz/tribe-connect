@@ -86,7 +86,7 @@ export const Pricing = () => {
         <div className="max-w-3xl mx-auto text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-display font-bold mb-4">
             Choose Your
-            <span className="gradient-primary bg-clip-text text-transparent"> Power Level</span>
+            <span className="gradient-text"> Power Level</span>
           </h2>
           <p className="text-xl text-muted-foreground">
             Start free forever. Upgrade anytime for automation and multiplied earnings.

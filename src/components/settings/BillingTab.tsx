@@ -223,7 +223,7 @@ export const BillingTab = () => {
                         <div className="text-xs text-muted-foreground">/month</div>
                       </div>
                       <Button
-                        onClick={() => navigate('/pricing')}
+                        onClick={() => navigate(`/checkout?plan=${plan.id}`)}
                         size="sm"
                         className="gradient-primary"
                       >
@@ -248,15 +248,6 @@ export const BillingTab = () => {
           </h3>
 
           <div className="space-y-4">
-            {subscription?.stripeCustomerId && (
-              <div>
-                <div className="text-sm text-muted-foreground mb-1">Customer ID</div>
-                <div className="text-sm font-mono truncate">
-                  {subscription.stripeCustomerId}
-                </div>
-              </div>
-            )}
-
             {subscription?.currentPeriodStart && (
               <div>
                 <div className="text-sm text-muted-foreground mb-1">Billing Started</div>

@@ -58,12 +58,8 @@ export const PricingCard = ({
       // Not authenticated, go to signup with plan preselected
       navigate(`/signup?plan=${plan.id}`);
     } else {
-      // Authenticated, start checkout
-      if (plan.stripePriceId) {
-        onSelectPlan(plan.stripePriceId, plan.id);
-      } else {
-        console.error('Missing stripePriceId for plan:', plan.id);
-      }
+      // Authenticated, navigate to checkout
+      navigate(`/checkout?plan=${plan.id}`);
     }
   };
 

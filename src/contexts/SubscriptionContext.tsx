@@ -12,7 +12,7 @@ import type {
   FeatureKey,
 } from '@/types/subscription';
 import { planHasFeature } from '@/config/feature-gates';
-import * as stripeService from '@/services/stripe.service';
+import * as paymentService from '@/services/payment.service';
 
 /**
  * Subscription Context
@@ -64,7 +64,7 @@ export const SubscriptionProvider = ({
       setError(null);
 
       // Initialize or load subscription
-      const sub = stripeService.initializeSubscription(user.uid);
+      const sub = await paymentService.initializeSubscription(user.uid);
       setSubscription(sub);
     } catch (err) {
       console.error('Failed to load subscription:', err);
@@ -88,33 +88,18 @@ export const SubscriptionProvider = ({
 
   /**
    * Upgrade to a new plan
+   * Navigates to checkout page
    */
   const upgradeToPlan = async (
-    priceId: string,
+    _priceId: string,
     planTier: PlanTier
   ): Promise<void> => {
     if (!user) {
       throw new Error('User must be logged in to upgrade');
     }
 
-    try {
-      setError(null);
-
-      // Create checkout session
-      const session = await stripeService.createCheckoutSession(
-        priceId,
-        user.uid,
-        user.email || '',
-        planTier
-      );
-
-      // Redirect to checkout
-      await stripeService.redirectToCheckout(session.sessionId);
-    } catch (err) {
-      console.error('Failed to upgrade plan:', err);
-      setError(err as Error);
-      throw err;
-    }
+    // Navigate to checkout page with selected plan
+    window.location.href = `/checkout?plan=${planTier}`;
   };
 
   /**
@@ -127,7 +112,7 @@ export const SubscriptionProvider = ({
 
     try {
       setError(null);
-      await stripeService.cancelSubscription(user.uid);
+      await paymentService.cancelSubscription(user.uid);
 
       // Reload subscription
       await loadSubscription();
@@ -148,7 +133,7 @@ export const SubscriptionProvider = ({
 
     try {
       setError(null);
-      await stripeService.reactivateSubscription(user.uid);
+      await paymentService.reactivateSubscription(user.uid);
 
       // Reload subscription
       await loadSubscription();

@@ -9,7 +9,7 @@
 export type PlanTier = 'free' | 'silver' | 'gold' | 'diamond';
 
 /**
- * Subscription status from Stripe
+ * Subscription status
  */
 export type SubscriptionStatus =
   | 'active'
@@ -45,8 +45,6 @@ export interface Plan {
   interval: BillingInterval | null;
   description: string;
   features: PlanFeature[];
-  stripeProductId: string | null;
-  stripePriceId: string | null;
   popular?: boolean;
   cta: string;
 }
@@ -58,9 +56,6 @@ export interface UserSubscription {
   userId: string;
   plan: PlanTier;
   status: SubscriptionStatus;
-  stripeCustomerId: string | null;
-  stripeSubscriptionId: string | null;
-  stripePriceId: string | null;
   currentPeriodStart: Date | null;
   currentPeriodEnd: Date | null;
   cancelAtPeriodEnd: boolean;
